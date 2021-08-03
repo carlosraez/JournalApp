@@ -10,10 +10,8 @@ import { AuthRouter } from './AuthRouter'
 export const AppRouter = () => {
     return (
         <Router>
-            <div className="auth__main">
-                <div className="auth__box-container">
-                    <Switch>
-                            <Route 
+                <Switch>
+                         <Route 
                                 path='/auth'
                                 component={AuthRouter}
                             />
@@ -22,9 +20,7 @@ export const AppRouter = () => {
                                 component={JournalScreen}
                             />
                          <Redirect to="/auth/login" />
-                    </Switch>
-                </div>  
-            </div>
+                </Switch>
         </Router>
     )
 }
