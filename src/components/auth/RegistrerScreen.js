@@ -4,13 +4,13 @@ import { useForm } from '../../hoocks/useForm'
 import { useDispatch, useSelector } from 'react-redux'
 import validator from 'validator';
 import { setError, removeError } from '../../actions/ui'
+import { startRegisterNameEmailPassword } from '../../actions/auth'
 
 export const RegistrerScreen = () => {
 
     const dispatch = useDispatch()
     const { msgError } = useSelector( state => state.ui )
-    console.log(msgError);
-
+    
     const [ formValues, handleInputChange ] = useForm({
 
         name:'',
@@ -25,8 +25,7 @@ export const RegistrerScreen = () => {
         e.preventDefault()
     
         if( isFormValid ()) {
-            console.log('Formulario correcto');
-            dispatch( removeError() )
+            dispatch( startRegisterNameEmailPassword(name, email, password)  )
         } 
     }
 
