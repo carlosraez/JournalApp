@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router,
     Switch,
     Route,
@@ -10,11 +10,14 @@ import { useDispatch } from 'react-redux'
 import { JournalScreen } from '../components/journal/JournalScreen'
 import { AuthRouter } from './AuthRouter'
 import { login } from '../actions/auth'
+import { loadNotes } from '../helpers/loadNotes'
 
 
 export const AppRouter = () => {
 
     const dispatch = useDispatch()
+    const [cheking, setCheking] = useState(true)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     useEffect(() => {
         
@@ -23,10 +26,22 @@ export const AppRouter = () => {
             //esto significa que estoy authenticado pregunta si el objeto user ? tiene algo entonces dime el uid
             if( user?.uid ) {
                 dispatch(login( user.uid, user.displayName ) )
+                setIsAuthenticated( true )
+
+                loadNotes(user.uid)
+            }
+            else {
+                setIsAuthenticated( false )
             }
         })
 
-    }, [dispatch])
+        setCheking(false)
+
+    }, [dispatch, setCheking, setIsAuthenticated])
+
+    if ( cheking ) {
+        return (<h1>Wait...</h1>)
+    }
 
     return (
         <Router>

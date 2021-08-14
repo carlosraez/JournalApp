@@ -10,6 +10,7 @@ export const RegistrerScreen = () => {
 
     const dispatch = useDispatch()
     const { msgError } = useSelector( state => state.ui )
+    const { loading } = useSelector(state => state.ui)
     
     const [ formValues, handleInputChange ] = useForm({
 
@@ -93,6 +94,7 @@ export const RegistrerScreen = () => {
                         type="submit"
                         className="btn btn-primary btn-block"
                         onClick={ handleRegister }
+                        disabled= { loading }
                     >
                         Registrer
                     </button>

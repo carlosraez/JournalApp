@@ -10,7 +10,7 @@ export const LoginScreen = () => {
 
     const dispatch = useDispatch()
     const { loading } = useSelector(state => state.ui)
-    console.log(loading);
+    
      
     const [ formValues, handleInputChange ] = useForm({
         email:'nando@gmail.com',
