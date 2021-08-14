@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux'
 import { JournalScreen } from '../components/journal/JournalScreen'
 import { AuthRouter } from './AuthRouter'
 import { login } from '../actions/auth'
-import { loadNotes } from '../helpers/loadNotes'
+import { startLoadingNotes } from '../actions/notes'
 
 
 export const AppRouter = () => {
@@ -21,14 +21,14 @@ export const AppRouter = () => {
 
     useEffect(() => {
         
-        firebase.auth().onAuthStateChanged( (user) => {
+        firebase.auth().onAuthStateChanged(async (user) => {
             console.log(user);
             //esto significa que estoy authenticado pregunta si el objeto user ? tiene algo entonces dime el uid
             if( user?.uid ) {
                 dispatch(login( user.uid, user.displayName ) )
                 setIsAuthenticated( true )
+                dispatch( startLoadingNotes( user.uid ) )
 
-                loadNotes(user.uid)
             }
             else {
                 setIsAuthenticated( false )
