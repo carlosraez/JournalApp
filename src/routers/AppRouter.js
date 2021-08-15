@@ -22,7 +22,7 @@ export const AppRouter = () => {
     useEffect(() => {
         
         firebase.auth().onAuthStateChanged(async (user) => {
-            console.log(user);
+        
             //esto significa que estoy authenticado pregunta si el objeto user ? tiene algo entonces dime el uid
             if( user?.uid ) {
                 dispatch(login( user.uid, user.displayName ) )
