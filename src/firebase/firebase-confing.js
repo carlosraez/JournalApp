@@ -4,7 +4,7 @@ import 'firebase/auth'
 
 
 var firebaseConfig = {
-    apiKey: "AIzaSyD9sDrFHC1WiMCscEAL8B4iolZUSLjOnPA",
+    apiKey: "demo",
     authDomain: "journal-app-e52f5.firebaseapp.com",
     projectId: "journal-app-e52f5",
     storageBucket: "journal-app-e52f5.appspot.com",
